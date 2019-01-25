@@ -1,0 +1,79 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 470px 470px;
+    grid-template-rows: auto auto; 
+    grid-column-gap: 20px;
+    padding: 2em;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto 30px;
+    background-color: #F4CC07;
+}
+
+.item-header {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: center;
+    position: relative;
+}
+
+.item-a {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+}
+
+.item-b {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+}
+
+#hangman{
+    margin-left: 150px;
+    margin-right: auto;
+}
+
+#onepiece{
+    position: absolute;
+    left: -20px;
+    top: 30px;
+    width: 200px;
+    height: auto;
+}
+
+
+#welcome {
+    width: 400px;
+    height: auto;
+}
+
+#currentWords, #guessLeft, #lettersGuessed {
+    color: #3977B9;
+}
+
+#resume {
+    display: none;  
+    position: relative;
+    left: 150px;  
+    padding: 1em;
+    background-color: brown;
+    text-align: center;
+    color: #F4CC07;
+    font-size: 18pt;
+}
+
+p {
+    text-align: center;
+    font-size: 24pt;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
