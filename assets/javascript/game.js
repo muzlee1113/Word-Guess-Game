@@ -53,6 +53,19 @@ const hintlibrary = [
     ["Hint: The name of seven pirates who have allied themselves with the World Government."]
 ]
 
+const celebrateText = [
+    ["Good job, bro!"],
+    ["Excellent!"],
+    ["You got it!"],
+    ["Well done! You are such a fan!"],
+    ["Wonderful! Can I have your number?"],
+    ["You did it! Things are getting harder now!"],
+    ["Cool! Try the next one to prove yourself!"],
+    ["Fabulous! I'll definely have a coffee with you!"],
+    ["Unstoppable! Try the last one!"],
+    ["You are amazing! Restart if you want!"]
+]
+
 let gameFunction = {
 
     //start the game
@@ -127,6 +140,32 @@ let gameFunction = {
         console.log(gameStarter);
     },
 
+    restart: function (event) {
+        // reset round
+        round = -1;
+        // reset currentWordsShow both on DOM and on screen
+        currentWordsShow = [];
+        currentWords.innerHTML = "&nbsp";
+        // reset guessLeft
+        guessLeft = 0;
+        guessLeftShow.innerHTML = "&nbsp";
+        // reset letter already guessed
+        key = [];
+        keyPress.innerHTML = "&nbsp";
+        // reset hangmanimg
+        hangmanimg.src = "assets/images/Start.png"
+        // reset welconeing
+        welcomeimg.src = 'assets/images/Welcome_img.jpg'
+        // display start button
+        startHint.style.display = "block";
+        // hide next button
+        restart.style.display = "none";
+        // reset background color
+        document.body.style.backgroundColor = "white";
+        gameStarter = false;
+        console.log(gameStarter);
+    },
+
 
 
 
@@ -139,7 +178,7 @@ let gameFunction = {
             // substract 1 when the user pressed one key
             //Create a loop for guess left that substract 1 when the user pressed one key
             guessLeft = guessLeft - 1;
-            if (guessLeft > 0) {
+            if (guessLeft >= 0) {
                 guessLeftShow.innerText = guessLeft;
             }
             else {
@@ -154,22 +193,22 @@ let gameFunction = {
                 document.body.style.backgroundColor = "red";
             };
 
-            if (guessLeft === 1) {
+            if (guessLeft === 0) {
                 hangmanimg.src = "assets/images/Step5.png"
             }
-            else if (guessLeft === 2) {
+            else if (guessLeft === 1) {
                 hangmanimg.src = "assets/images/Step4.png"
             }
-            else if (guessLeft === 3) {
+            else if (guessLeft === 2) {
                 hangmanimg.src = "assets/images/Step3.png"
             }
-            else if (guessLeft === 4) {
+            else if (guessLeft === 3) {
                 hangmanimg.src = "assets/images/Step2.png"
             }
-            else if (guessLeft === 5) {
+            else if (guessLeft === 4) {
                 hangmanimg.src = "assets/images/Step1.png"
             }
-            else if (guessLeft === 0) {
+            else if (guessLeft < 0) {
                 hangmanimg.src = "assets/images/Step6.png"
 
             }
@@ -193,11 +232,16 @@ let gameFunction = {
             //turn the two arrays to string and show the win screen
             if (currentWordsShow.toString() === answer.toString()) {
                 currentWords.innerText = currentWordsShow.join("  ")
-                resume.style.display = "block";
+                guessLeftShow.innerText = celebrateText[round];
                 hint.style.display = "none"; 
                 hangmanimg.src = "assets/images/Win.png";
                 gameStarter = false;
                 console.log(gameStarter);
+                if(round < 9) {
+                resume.style.display = "block";
+                } else {
+                restart.style.display = "block";
+                }
             }
             else {
                 // push the identical index into currentWordsShow
@@ -213,9 +257,11 @@ let gameFunction = {
 // document.getElementById("startHint").onclick = start;
 document.getElementById("startHint").addEventListener("click", gameFunction.start);
 document.addEventListener("keyup", gameFunction.savekey);
-document.addEventListener("keyup", gameFunction.guess);
 document.addEventListener("keyup", gameFunction.check);
+document.addEventListener("keyup", gameFunction.guess);
 document.getElementById("resume").addEventListener("click", gameFunction.reset);
+document.getElementById("restart").addEventListener("click", gameFunction.restart);
+
 
 
 

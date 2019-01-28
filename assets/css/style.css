@@ -86,6 +86,7 @@
 #welcome {
     width: auto;
     height: 400px;
+    max-width: 470px;
 }
 
 #currentWords, #guessLeft, #lettersGuessed {
@@ -93,7 +94,6 @@
 }
 
 #resume {
-    float: right;
     display: none;
     padding: 1em;
     background-color: brown;
@@ -103,7 +103,6 @@
 }
 
 #startHint {
-    float: left;
     display: block;
     top: 20px;
     padding: 1em;
@@ -113,6 +112,15 @@
     font-size: 18pt;
     z-index: 10;
     margin-bottom: 1em;
+}
+
+#restart {
+    display: none;
+    padding: 1em;
+    background-color: brown;
+    text-align: center;
+    color: #F4CC07;
+    font-size: 18pt;
 }
 
 p {
