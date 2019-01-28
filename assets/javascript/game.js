@@ -62,7 +62,7 @@ let gameFunction = {
         // get answerkey from library to answer
         answer = answerlibrary[round];
         // change welcome pic into hint picture
-        welcomeimg.src = 'Word-Guess-Game/assets/images/hint/' + round + '.png';
+        welcomeimg.src = 'assets/images/hint/' + round + '.png';
         //set the origin guessleft to twice of the answer length
         guessLeft = answer.length + 7;
         guessLeftShow.innerText = guessLeft;
@@ -89,7 +89,7 @@ let gameFunction = {
         currentWordsShow = [];
         currentWords.innerText = currentWordsShow;
         // reset hangmanimg
-        hangmanimg.src = "Word-Guess-Game/assets/images/Start.png"
+        hangmanimg.src = "assets/images/Start.png"
         // reset letter already guessed
         key = [];
         keyPress.innerHTML = "&nbsp";
@@ -98,7 +98,7 @@ let gameFunction = {
         // get answerkey from library to answer
         answer = answerlibrary[round];
         // change welcome pic into hint picture
-        welcomeimg.src = 'Word-Guess-Game/assets/images/hint/' + round + '.png';
+        welcomeimg.src = 'assets/images/hint/' + round + '.png';
         //set the origin guessleft to twice of the answer length
         guessLeft = answer.length + 7;
         guessLeftShow.innerText = guessLeft;
@@ -133,6 +133,7 @@ let gameFunction = {
         else {
             guessLeftShow.innerText = "Naah! Answer is " + answer.join("");
             resume.style.display = "block";
+            hint.style.display = "none"; 
         };
 
         if (guessLeft < 6) {
@@ -140,22 +141,22 @@ let gameFunction = {
         };
 
         if (guessLeft === 1) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step5.png"
+            hangmanimg.src = "assets/images/Step5.png"
         }
         else if (guessLeft === 2) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step4.png"
+            hangmanimg.src = "assets/images/Step4.png"
         }
         else if (guessLeft === 3) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step3.png"
+            hangmanimg.src = "assets/images/Step3.png"
         }
         else if (guessLeft === 4) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step2.png"
+            hangmanimg.src = "assets/images/Step2.png"
         }
         else if (guessLeft === 5) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step1.png"
+            hangmanimg.src = "assets/images/Step1.png"
         }
         else if (guessLeft === 0) {
-            hangmanimg.src = "Word-Guess-Game/assets/images/Step6.png"
+            hangmanimg.src = "assets/images/Step6.png"
 
         }
     },
@@ -170,12 +171,12 @@ let gameFunction = {
             }
         }
         // End the round
-        //turn the two arrays to string
+        //turn the two arrays to string and show the win screen
         if (currentWordsShow.toString() === answer.toString()) {
             currentWords.innerText = currentWordsShow.join("  ")
             resume.style.display = "block";
             hint.style.display = "none"; 
-            hangmanimg.src = "Word-Guess-Game/assets/images/Win.png";
+            hangmanimg.src = "assets/images/Win.png";
         }
         else {
             // push the identical index into currentWordsShow
