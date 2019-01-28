@@ -1,0 +1,128 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 470px 470px;
+    grid-template-rows: 210px 250px 450px; 
+    grid-column-gap: 10px;
+    padding: 2em;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto 30px;
+    background-color: #F4CC07;
+}
+
+.item-header {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: center;
+    position: relative;
+}
+
+.item-a {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+    align-self: center;
+    margin-top: 2em;
+}
+
+
+.item-b {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    justify-self: center;
+    align-self: end;
+}
+
+.item-c {
+    position: relative;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+    align-self: end;
+}
+
+.item-d {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    justify-self: center;
+    align-self: center;
+}
+
+
+#hangman{
+    margin-left: 150px;
+    margin-right: auto;
+}
+
+#onepiece{
+    position: absolute;
+    left: -20px;
+    top: 30px;
+    width: 200px;
+    height: auto;
+}
+
+#hint {
+    display: none;
+    text-align: left!important;
+    font-size: 16pt!important;
+
+}
+
+
+#welcome {
+    width: auto;
+    height: 400px;
+}
+
+#currentWords, #guessLeft, #lettersGuessed {
+    color: #3977B9;
+}
+
+#resume {
+    float: right;
+    display: none;
+    padding: 1em;
+    background-color: brown;
+    text-align: center;
+    color: #F4CC07;
+    font-size: 18pt;
+}
+
+#startHint {
+    float: left;
+    display: block;
+    top: 20px;
+    padding: 1em;
+    background-color: brown;
+    text-align: center;
+    color: #F4CC07;
+    font-size: 18pt;
+    z-index: 10;
+    margin-bottom: 1em;
+}
+
+p {
+    text-align: center;
+    font-size: 20pt;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #3977B9;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
