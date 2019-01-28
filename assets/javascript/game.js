@@ -21,7 +21,7 @@ var answer = [];
 var guessLeft = 0;
 var round = -1;
 var key;
-var gamestarter;
+var gameStarter = false;
 
 
 
@@ -57,8 +57,12 @@ let gameFunction = {
 
     //start the game
     start: function (event) {
+        // start the game
+        gameStarter = true;
+        console.log(gameStarter);
         // add round
         round = round + 1;
+        console.log(round);
         // get answerkey from library to answer
         answer = answerlibrary[round];
         // change welcome pic into hint picture
@@ -80,8 +84,13 @@ let gameFunction = {
 
     //save the key
     savekey: function (event) {
+        if(gameStarter === true) {
         // turn everu key pressed into lowercase and save it to a variable
         key = event.key.toLowerCase();
+        } 
+        else {
+
+        }
     },
 
     reset: function (event) {
@@ -114,6 +123,8 @@ let gameFunction = {
         // get hint from library to hint and display hint 
         hint.innerText = hintlibrary[round];
         hint.style.display = "block"; 
+        gameStarter = true;
+        console.log(gameStarter);
     },
 
 
@@ -122,65 +133,79 @@ let gameFunction = {
     // var game = {
     // function that count guess times and print guessed letters
     guess: function (event) {
-        // print every key the user pressed into the p tags
-        keyPress.innerText = keyPress.innerText + " " + key;
-        // substract 1 when the user pressed one key
-        //Create a loop for guess left that substract 1 when the user pressed one key
-        guessLeft = guessLeft - 1;
-        if (guessLeft > 0) {
-            guessLeftShow.innerText = guessLeft;
-        }
-        else {
-            guessLeftShow.innerText = "Naah! Answer is " + answer.join("");
-            resume.style.display = "block";
-            hint.style.display = "none"; 
-        };
+        if(gameStarter === true) {
+            // print every key the user pressed into the p tags
+            keyPress.innerText = keyPress.innerText + " " + key;
+            // substract 1 when the user pressed one key
+            //Create a loop for guess left that substract 1 when the user pressed one key
+            guessLeft = guessLeft - 1;
+            if (guessLeft > 0) {
+                guessLeftShow.innerText = guessLeft;
+            }
+            else {
+                guessLeftShow.innerText = 'Naah! The answer is "' + answer.join("") + '"!';
+                resume.style.display = "block";
+                hint.style.display = "none"; 
+                gameStarter = false;
+                console.log(gameStarter);
+            };
 
-        if (guessLeft < 6) {
-            document.body.style.backgroundColor = "red";
-        };
+            if (guessLeft < 6) {
+                document.body.style.backgroundColor = "red";
+            };
 
-        if (guessLeft === 1) {
-            hangmanimg.src = "assets/images/Step5.png"
-        }
-        else if (guessLeft === 2) {
-            hangmanimg.src = "assets/images/Step4.png"
-        }
-        else if (guessLeft === 3) {
-            hangmanimg.src = "assets/images/Step3.png"
-        }
-        else if (guessLeft === 4) {
-            hangmanimg.src = "assets/images/Step2.png"
-        }
-        else if (guessLeft === 5) {
-            hangmanimg.src = "assets/images/Step1.png"
-        }
-        else if (guessLeft === 0) {
-            hangmanimg.src = "assets/images/Step6.png"
+            if (guessLeft === 1) {
+                hangmanimg.src = "assets/images/Step5.png"
+            }
+            else if (guessLeft === 2) {
+                hangmanimg.src = "assets/images/Step4.png"
+            }
+            else if (guessLeft === 3) {
+                hangmanimg.src = "assets/images/Step3.png"
+            }
+            else if (guessLeft === 4) {
+                hangmanimg.src = "assets/images/Step2.png"
+            }
+            else if (guessLeft === 5) {
+                hangmanimg.src = "assets/images/Step1.png"
+            }
+            else if (guessLeft === 0) {
+                hangmanimg.src = "assets/images/Step6.png"
+
+            }
+        } else {
 
         }
     },
 
 
     check: function (event) {
-        let matchcount = 0;
-        // check the answer array: if answerarray match, print the letter on current word
-        for (let j = 0; j < answer.length; j++) {
-            if (answer[j] === key) {
-                currentWordsShow[j] = answer[j];
+        if(gameStarter === true) {
+
+            let matchcount = 0;
+            // check the answer array: if answerarray match, print the letter on current word
+            for (let j = 0; j < answer.length; j++) {
+                if (answer[j] === key) {
+                    currentWordsShow[j] = answer[j];
+                }
+            }
+            // End the round
+            //turn the two arrays to string and show the win screen
+            if (currentWordsShow.toString() === answer.toString()) {
+                currentWords.innerText = currentWordsShow.join("  ")
+                resume.style.display = "block";
+                hint.style.display = "none"; 
+                hangmanimg.src = "assets/images/Win.png";
+                gameStarter = false;
+                console.log(gameStarter);
+            }
+            else {
+                // push the identical index into currentWordsShow
+                currentWords.innerText = currentWordsShow.join("  ");
             }
         }
-        // End the round
-        //turn the two arrays to string and show the win screen
-        if (currentWordsShow.toString() === answer.toString()) {
-            currentWords.innerText = currentWordsShow.join("  ")
-            resume.style.display = "block";
-            hint.style.display = "none"; 
-            hangmanimg.src = "assets/images/Win.png";
-        }
         else {
-            // push the identical index into currentWordsShow
-            currentWords.innerText = currentWordsShow.join("  ");
+
         }
     }
 
